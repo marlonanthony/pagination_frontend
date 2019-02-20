@@ -41,7 +41,7 @@ class App extends Component {
     }
     axios.post('/posts', newPost)
     .then(res => console.log(res))
-    .then(this.setState(prevState => ({ posts: [...this.state.posts, newPost] })))
+    .then(this.setState(prevState => ({ posts: [newPost, ...prevState.posts] })))
     .catch(err => console.log(err))
 
     e.target.reset() 
