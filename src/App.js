@@ -29,15 +29,6 @@ class App extends Component {
     .then(this.setState(prevState => ({ start: prevState.start + 1 })))
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { count, start } = this.state 
-  //   if(this.state.posts !== prevState.posts) {
-  //     axios.get(`/posts?count=${count}&start=${start}`)
-  //     .then(res => this.setState({ posts: res.data }))
-  //     .catch(err => console.log(err))
-  //   }
-  // }
-
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value })
     console.log(this.state.text)
@@ -50,6 +41,7 @@ class App extends Component {
     }
     axios.post('/posts', newPost)
     .then(res => console.log(res))
+    .then(this.setState(prevState => ({ posts: [...this.state.posts, newPost] })))
     .catch(err => console.log(err))
 
     e.target.reset() 
@@ -59,6 +51,7 @@ class App extends Component {
     const { posts } = this.state 
     return (
       <div className="App">
+        <h1>Infinite Scroll</h1>
         <form onSubmit={this.onSubmit}>
           <input type="text" name='text' value={this.state.name} onChange={this.onChange}/>
           <input type='submit' />
