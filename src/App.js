@@ -75,38 +75,9 @@ class App extends Component {
   render() {
     const { posts } = this.state 
     return (
-      <ApolloProvider client={client}>
+      // <ApolloProvider client={client}>
         <div className="App">
           <h1>Infinite Scroll</h1>
-            <form onSubmit={this.onSubmit}>
-              <input type="text" name='text' value={this.state.name} onChange={this.onChange}/>
-              <input type='submit' />
-            </form>
-          <Query query={POST_QUERY}>
-              {({ loading, error, data }) => {
-                if(loading) return <h4>Loading...</h4>
-                if(error) console.log(error) 
-                console.log(data)
-                return (
-                  // <InfinteScroll
-                  //   dataLength={data.posts.length}
-                  //   next={this.fetchMore}
-                  //   hasMore={true}
-                  //   loader={<h4>Loading....</h4>}>
-                  <div>
-                    { data && data.posts.map(post => (
-                      <div style={{ padding: 50, background: 'black', color: 'gray', margin: 10 }} key={post._id}>
-                        <p><Moment format='MM/DD/YYYY'>{post.date}</Moment></p>
-                        <p>{post.text}</p>
-                        <p>{post._id}</p>
-                      </div>
-                    ))}
-                  </div>
-                  // </InfinteScroll>
-                )
-              }}
-            </Query>
-          {/* <h1>Infinite Scroll</h1>
           <form onSubmit={this.onSubmit}>
             <input type="text" name='text' value={this.state.name} onChange={this.onChange}/>
             <input type='submit' />
@@ -117,15 +88,54 @@ class App extends Component {
             hasMore={true}
             loader={<h4>Loading....</h4>}>
             { posts.map(post => (
-              <div key={post._id}>
+              <div style={{ padding: 50, background: 'black', color: 'gray', margin: 10 }} key={post._id}>
                 <p>{post.text}</p>
               </div>
             ))}
-          </InfinteScroll> */}
+          </InfinteScroll>
         </div>
-      </ApolloProvider>
+      // </ApolloProvider>
     );
   }
 }
 
 export default App;
+
+
+
+{/* <form onSubmit={this.onSubmit}>
+<input type="text" name='text' value={this.state.name} onChange={this.onChange}/>
+<input type='submit' />
+</form>
+<Query query={POST_QUERY}>
+{({ loading, error, data }) => {
+  if(loading) return <h4>Loading...</h4>
+  if(error) console.log(error) 
+  console.log(data)
+  return ( */}
+
+
+
+
+    // <InfinteScroll
+    //   dataLength={data.posts.length}
+    //   next={this.fetchMore}
+    //   hasMore={true}
+    //   loader={<h4>Loading....</h4>}>
+
+
+
+
+//     <div>
+//       { data && data.posts.map(post => (
+//         <div style={{ padding: 50, background: 'black', color: 'gray', margin: 10 }} key={post._id}>
+//           <p><Moment format='MM/DD/YYYY'>{post.date}</Moment></p>
+//           <p>{post.text}</p>
+//           <p>{post._id}</p>
+//         </div>
+//       ))}
+//     </div>
+//     // </InfinteScroll>
+//   )
+// }}
+// </Query>
